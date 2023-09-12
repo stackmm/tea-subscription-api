@@ -1,0 +1,302 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/environment.rb": {
+        "lines": [
+          null,
+          1,
+          null,
+          null,
+          1
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/application.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/boot.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/environments/test.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/initializers/cors.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/initializers/filter_parameter_logging.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/initializers/inflections.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/spec/factories/customers.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/spec/factories/subscriptions.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/spec/factories/teas.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/config/routes.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/app/models/customer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/spec/models/subscription_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/app/models/subscription.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/spec/models/tea_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/stackhouse/4mod/TeaSubscription-api/app/models/tea.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      }
+    },
+    "timestamp": 1694540946
+  }
+}
