@@ -38,7 +38,23 @@ RSpec.describe "Destroy Subscription API" do
         expect(response.status).to eq(404)
 
         error_response = JSON.parse(response.body, symbolize_names: true)
+
         expect(error_response[:error]).to eq("Customer not found")
+      end
+
+      it "returns a 404 if the subscription is already cancelled" do
+        customer = create(:customer)
+        tea = create(:tea)
+        subscription = create(:subscription, customer: customer, tea: tea, status: 1)
+
+        delete "/api/v1/subscriptions/#{subscription.id}"
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        error_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(error_response[:error]).to eq("Subscription is already cancelled")
       end
     end
   end
