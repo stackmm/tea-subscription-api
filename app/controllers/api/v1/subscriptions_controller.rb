@@ -17,9 +17,13 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def destroy
     subscription = Subscription.find(params[:id])
-    subscription.cancelled!
 
-    render json: SubscriptionSerializer.new(subscription), status: 200
+    if subscription.cancelled?
+      render json: {error: "Subscription is already cancelled"}, status: 400
+    else
+      subscription.cancelled!
+      render json: SubscriptionSerializer.new(subscription), status: 200
+    end
   end
 
   private
