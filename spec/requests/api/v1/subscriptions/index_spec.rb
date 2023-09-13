@@ -36,6 +36,8 @@ RSpec.describe "Customer's Subscriptions Index API" do
           expect(subscription[:attributes]).to have_key(:price)
           expect(subscription[:attributes]).to have_key(:status)
           expect(subscription[:attributes]).to have_key(:frequency)
+          expect(subscription[:attributes]).to have_key(:customer_id)
+          expect(subscription[:attributes]).to have_key(:tea_id)
         end
 
         get "/api/v1/customers/#{customer_2.id}/subscriptions"
