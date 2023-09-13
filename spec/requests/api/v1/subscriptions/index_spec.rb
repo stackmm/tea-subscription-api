@@ -11,11 +11,11 @@ RSpec.describe "Customer's Subscriptions Index API" do
         tea_2 = create(:tea)
         tea_3 = create(:tea)
 
-        subscription_1 = create(:subscription, customer: customer_1, tea: tea_1)
-        subscription_2 = create(:subscription, customer: customer_1, tea: tea_2)
-        subscription_3 = create(:subscription, customer: customer_1, tea: tea_3)
-        subscription_4 = create(:subscription, customer: customer_2, tea: tea_1)
-        subscription_5 = create(:subscription, customer: customer_2, tea: tea_2)
+        subscription_1 = create(:subscription, customer: customer_1, tea: tea_1, status: 1)
+        subscription_2 = create(:subscription, customer: customer_1, tea: tea_2, status: 0)
+        subscription_3 = create(:subscription, customer: customer_1, tea: tea_3, status: 0)
+        subscription_4 = create(:subscription, customer: customer_2, tea: tea_1, status: 0)
+        subscription_5 = create(:subscription, customer: customer_2, tea: tea_2, status: 1)
 
         get "/api/v1/customers/#{customer_1.id}/subscriptions"
 
@@ -24,6 +24,7 @@ RSpec.describe "Customer's Subscriptions Index API" do
 
         subscriptions = JSON.parse(response.body, symbolize_names: true)
 
+        expect(customer_1.subscriptions.count).to eq(3)
         expect(subscriptions[:data].count).to eq(3)
 
         subscriptions[:data].each do |subscription|
@@ -48,6 +49,7 @@ RSpec.describe "Customer's Subscriptions Index API" do
 
         subscriptions = JSON.parse(response.body, symbolize_names: true)
 
+        expect(customer_2.subscriptions.count).to eq(2)
         expect(subscriptions[:data].count).to eq(2)
       end
     end
