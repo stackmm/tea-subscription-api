@@ -59,9 +59,9 @@ RSpec.describe "Customer's Subscriptions Index API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(404)
 
-        error = JSON.parse(response.body, symbolize_names: true)
+        error_response = JSON.parse(response.body, symbolize_names: true)
 
-        expect(error[:error]).to eq("Customer not found")
+        expect(error_response[:error]).to eq("Customer not found")
       end
 
       it "returns an empty array if the customer has no subscriptions" do

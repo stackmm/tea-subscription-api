@@ -20,14 +20,14 @@ RSpec.describe "Create Subscription API" do
         expect(response).to be_successful
         expect(response.status).to eq(201)
 
-        subscription = JSON.parse(response.body, symbolize_names: true)
+        sub_response = JSON.parse(response.body, symbolize_names: true)
 
-        expect(subscription[:data][:attributes][:title]).to eq(subscription_params[:title])
-        expect(subscription[:data][:attributes][:price]).to eq(subscription_params[:price].to_s)
-        expect(subscription[:data][:attributes][:status]).to eq("active")
-        expect(subscription[:data][:attributes][:frequency]).to eq(subscription_params[:frequency])
-        expect(subscription[:data][:attributes][:customer_id]).to eq(subscription_params[:customer_id])
-        expect(subscription[:data][:attributes][:tea_id]).to eq(subscription_params[:tea_id])
+        expect(sub_response[:data][:attributes][:title]).to eq(subscription_params[:title])
+        expect(sub_response[:data][:attributes][:price]).to eq(subscription_params[:price].to_s)
+        expect(sub_response[:data][:attributes][:status]).to eq("active")
+        expect(sub_response[:data][:attributes][:frequency]).to eq(subscription_params[:frequency])
+        expect(sub_response[:data][:attributes][:customer_id]).to eq(subscription_params[:customer_id])
+        expect(sub_response[:data][:attributes][:tea_id]).to eq(subscription_params[:tea_id])
       end
     end
 
@@ -48,8 +48,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Customer must exist")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Customer must exist")
       end
 
       it "returns a 400 error if the tea is not found" do
@@ -68,8 +68,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Tea must exist")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Tea must exist")
       end
 
       it "returns a 400 error if the title parameter is missing" do
@@ -88,8 +88,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Title can't be blank")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Title can't be blank")
       end
 
       it "returns a 400 error if the price parameter is missing" do
@@ -108,8 +108,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Price can't be blank and Price is not a number")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Price can't be blank and Price is not a number")
       end
 
       it "returns a 400 error if the frequency parameter is missing" do
@@ -128,8 +128,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Frequency can't be blank and Frequency is not included in the list")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Frequency can't be blank and Frequency is not included in the list")
       end
 
       it "returns a 400 error if the customer_id parameter is missing" do
@@ -148,8 +148,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Customer must exist")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Customer must exist")
       end
 
       it "returns a 400 error if the tea_id parameter is missing" do
@@ -168,8 +168,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Tea must exist")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Tea must exist")
       end
 
       it "returns a 400 error if the price is not a number" do
@@ -189,8 +189,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Price is not a number")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Price is not a number")
       end
 
       it "returns a 400 error if the frequency is not valid" do
@@ -210,8 +210,8 @@ RSpec.describe "Create Subscription API" do
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
 
-        response_json = JSON.parse(response.body, symbolize_names: true)
-        expect(response_json[:error]).to eq("Frequency is not included in the list")
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Frequency is not included in the list")
       end
     end
   end
