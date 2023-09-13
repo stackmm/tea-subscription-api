@@ -47,13 +47,29 @@ RSpec.describe "Create Subscription API" do
 
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
-        
+
         response_json = JSON.parse(response.body, symbolize_names: true)
         expect(response_json[:error]).to eq("Customer must exist")
       end
 
       it "returns a 400 error if the tea is not found" do
+        customer = create(:customer)
 
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          price: 10.00,
+          frequency: "Monthly",
+          customer_id: customer.id,
+          tea_id: 1
+        }
+
+        post "/api/v1/subscriptions", params: subscription_params
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Tea must exist")
       end
 
       it "returns a 400 error if any parameter is missing" do
