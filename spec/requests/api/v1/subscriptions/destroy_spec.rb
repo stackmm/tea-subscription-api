@@ -15,6 +15,8 @@ RSpec.describe "Destroy Subscription API" do
         expect(response).to be_successful
         expect(response.status).to eq(200)
 
+        subscription = Subscription.find_by(id: subscription.id)
+
         expect(subscription.status).to eq("cancelled")
 
         sub_response = JSON.parse(response.body, symbolize_names: true)
@@ -29,11 +31,14 @@ RSpec.describe "Destroy Subscription API" do
     end
 
     describe "Sad Path" do
-      xit "returns a 404 if the subscription is not found" do
+      it "returns a 404 if the subscription is not found" do
         delete "/api/v1/subscriptions/1"
 
         expect(response).to_not be_successful
         expect(response.status).to eq(404)
+
+        error_response = JSON.parse(response.body, symbolize_names: true)
+        expect(error_response[:error]).to eq("Customer not found")
       end
     end
   end
