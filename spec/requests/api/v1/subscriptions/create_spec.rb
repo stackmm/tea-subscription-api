@@ -72,7 +72,7 @@ RSpec.describe "Create Subscription API" do
         expect(response_json[:error]).to eq("Tea must exist")
       end
 
-      it "returns a 400 error if any parameter is missing" do
+      it "returns a 400 error if the title parameter is missing" do
         customer = create(:customer)
         tea = create(:tea)
 
@@ -90,6 +90,86 @@ RSpec.describe "Create Subscription API" do
 
         response_json = JSON.parse(response.body, symbolize_names: true)
         expect(response_json[:error]).to eq("Title can't be blank")
+      end
+
+      it "returns a 400 error if the price parameter is missing" do
+        customer = create(:customer)
+        tea = create(:tea)
+
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          frequency: "Monthly",
+          customer_id: customer.id,
+          tea_id: tea.id
+        }
+
+        post "/api/v1/subscriptions", params: subscription_params
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Price can't be blank and Price is not a number")
+      end
+
+      it "returns a 400 error if the frequency parameter is missing" do
+        customer = create(:customer)
+        tea = create(:tea)
+
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          price: 10.00,
+          customer_id: customer.id,
+          tea_id: tea.id
+        }
+
+        post "/api/v1/subscriptions", params: subscription_params
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Frequency can't be blank and Frequency is not included in the list")
+      end
+
+      it "returns a 400 error if the customer_id parameter is missing" do
+        customer = create(:customer)
+        tea = create(:tea)
+
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          price: 10.00,
+          frequency: "Monthly",
+          tea_id: tea.id
+        }
+
+        post "/api/v1/subscriptions", params: subscription_params
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Customer must exist")
+      end
+
+      it "returns a 400 error if the tea_id parameter is missing" do
+        customer = create(:customer)
+        tea = create(:tea)
+
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          price: 10.00,
+          frequency: "Monthly",
+          customer_id: customer.id
+        }
+
+        post "/api/v1/subscriptions", params: subscription_params
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Tea must exist")
       end
 
       it "returns a 400 error if the price is not a number" do
@@ -113,12 +193,25 @@ RSpec.describe "Create Subscription API" do
         expect(response_json[:error]).to eq("Price is not a number")
       end
 
-      it "returns a 4004 error if the frequency is not valid" do
+      it "returns a 400 error if the frequency is not valid" do
+        customer = create(:customer)
+        tea = create(:tea)
 
-      end
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          price: 10.00,
+          frequency: "Daily",
+          customer_id: customer.id,
+          tea_id: tea.id
+        }
 
-      it "returns a 400 error if the customer already has a subscription to that tea" do
+        post "/api/v1/subscriptions", params: subscription_params
 
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Frequency is not included in the list")
       end
     end
   end
