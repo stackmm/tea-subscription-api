@@ -93,7 +93,24 @@ RSpec.describe "Create Subscription API" do
       end
 
       it "returns a 400 error if the price is not a number" do
+        customer = create(:customer)
+        tea = create(:tea)
 
+        subscription_params = {
+          title: "My Monthly Tea Subscription",
+          price: "ten dollars",
+          frequency: "Monthly",
+          customer_id: customer.id,
+          tea_id: tea.id
+        }
+
+        post "/api/v1/subscriptions", params: subscription_params
+
+        expect(response).to_not be_successful
+        expect(response.status).to eq(400)
+
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response_json[:error]).to eq("Price is not a number")
       end
 
       it "returns a 4004 error if the frequency is not valid" do
