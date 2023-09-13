@@ -51,7 +51,30 @@ RSpec.describe "Customer's Subscriptions Index API" do
     end
 
     describe "Sad Path" do
+      it "returns a 404 if the customer is not found" do
+        get "/api/v1/customers/1/subscriptions"
 
+        expect(response).to_not be_successful
+        expect(response.status).to eq(404)
+
+        error = JSON.parse(response.body, symbolize_names: true)
+
+        expect(error[:error]).to eq("Customer not found")
+      end
+
+      it "returns an empty array if the customer has no subscriptions" do
+        customer = create(:customer)
+
+        get "/api/v1/customers/#{customer.id}/subscriptions"
+
+        expect(response).to be_successful
+        expect(response.status).to eq(200)
+
+        subscriptions = JSON.parse(response.body, symbolize_names: true)
+
+        expect(customer.subscriptions.count).to eq(0)
+        expect(subscriptions[:data]).to eq([])
+      end
     end
   end
 end
